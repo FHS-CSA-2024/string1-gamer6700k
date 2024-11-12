@@ -62,7 +62,7 @@ public class String1
      * makeTags("cite", "Yay") --> "<cite>Yay</cite>"
      */
     public String makeTags(String tag, String word) {
-        return "<"+tag+">" + word + "<"+tag+">";
+        return "<"+tag+">" + word + "</"+tag+">";
     }
 
     /*
@@ -174,13 +174,10 @@ public class String1
      * middleThree("and") --> "and"
      * middleThree("solving") --> "lvi"
      */
-    public String middleThree(String str) {
-        int mt = (str.length()-3)/2;
-        String mystr = str.substring(mt, str.length()-1);
-        
-        
-        return mystr;
-    }
+  public String middleThree(String str) {
+    int midIndex = (str.length() - 3) / 2;
+    return str.substring(midIndex, midIndex + 3);
+}
 
     /*
      * Given a string, return a new string made of 3 copies of the first 2 chars of the original string. 
@@ -247,16 +244,18 @@ public class String1
      * conCat("dog", "cat") --> "dogcat"
      * conCat("abc", "") --> "abc"
      */
-    public String conCat(String a, String b) {
-        String conc = "";
-        if ((a.substring(a.length()-1)).equals(b.substring(0,1))) {
-            conc = a + b.substring(1,b.length());
-        }
-        else {
-            conc = a + b;
-        }
-        return conc;
+ public String conCat(String a, String b) {
+    if (a.isEmpty()) return b;
+    if (b.isEmpty()) return a;
+
+    // Check if the last character of 'a' is the same as the first character of 'b'
+    if (a.charAt(a.length() - 1) == b.charAt(0)) {
+        return a + b.substring(1); // Skip the first character of 'b'
+    } else {
+        return a + b;
     }
+}
+
 
     /*
      *Given two strings, append them together (known as "concatenation") and return the result. 
